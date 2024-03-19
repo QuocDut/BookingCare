@@ -1,0 +1,88 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="col-8">
+        <h1 class="h3 mb-0 text-gray-800">Overview</h1>
+    </div>
+    <div class="col-4 d-flex">
+        <form class="w-100 d-flex">
+            <select class="custom-select mr-3" id="monthAnalyse" name="monthAnalyse">
+                <% for (let i= 1; i< 13; i++) {%>
+                    <option value="<%= i %>" <% if(i === currentMonth) {%> selected <%}%>>Tháng <%=  i %></option>
+                <%}%>
+            </select>
+            <button class="btn btn-primary" type="button" id="findStatisticalAdmin">Filter</button>
+        </form>
+    </div>
+</div>
+<div class="container ml-5">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total number of patients
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="sumPatient"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Doctors</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="sumDoctor"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Posts</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="sumPost"></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    The doctor most times booked
+                    <div class="text-white-50 small" id="bestDoctor"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 mb-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    the most article supporters
+                    <div class="text-white-50 small" id="bestSupporter"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

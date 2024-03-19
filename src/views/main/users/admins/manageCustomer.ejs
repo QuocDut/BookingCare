@@ -1,0 +1,51 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Customer care</h1>
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of customer feedback</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Content</th>
+                    <th>Phone number</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% comments.forEach(function(cmt) { %>
+                    <tr>
+                        <td><%= cmt.id %></td>
+                        <td><%= cmt.name %></td>
+                        <td><%= cmt.content %></td>
+                        <td><%= cmt.phone %></td>
+                        <td><%= cmt.createdAt %></td>
+                        <td class="">
+                            <a class="done-comment" data-comment-id="<%= cmt.id%>" href="#" title="Confirm feedback"><i class="fa fa-check-circle"></i></a>
+                            <a class="edit-comment" href="/users/supporter/comment-edit/<%= cmt.id %>" title="Edit"><i class="fas fa-pen-square mx-3"></i></a>
+                            <a class="delete-comment" data-comment-id="<%= cmt.id%>" href="#" title="Delete"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $(".supporter-list-customers").addClass("active");
+    });
+</script>

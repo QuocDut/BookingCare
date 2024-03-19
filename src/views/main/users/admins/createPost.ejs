@@ -1,0 +1,50 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add a new post</h1>
+</div>
+<!-- Content Row -->
+<div class="row">
+    <div class="col-10 mx-auto">
+        <form id="formCreateNewPost">
+            <div class="form-group">
+                <label for="title-post">Title</label>
+                <input type="text" class="form-control" id="title-post" name="title-post" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="address">The post serves:</label>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <select id="forDoctorId" class="form-control" name="forDoctorId">
+                            <option value="-1" selected>No doctors are chosen</option>
+                            <% doctors.forEach(function(x) { %>
+                                <option value="<%= x.id %>"> <%= x.name %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        <select id="forClinicId" class="form-control" name="forClinicId">
+                            <option value="-1" selected>No clinics are chosen</option>
+                            <% clinics.forEach(function(x) { %>
+                                <option value="<%= x.id %>"> <%= x.name %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        <select id="forSpecialization" class="form-control" name="forSpecializationId">
+                            <option value="-1" selected>No specialist are chosen</option>
+                            <% specializations.forEach(function(x) { %>
+                                <option value="<%= x.id %>"> <%= x.name %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contentMarkdown">Description</label>
+                <textarea id="contentMarkdown" class="form-control"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="createNewPost">Create</button>
+        </form>
+    </div>
+</div>

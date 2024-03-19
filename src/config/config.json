@@ -1,0 +1,30 @@
+{
+    "development": {
+        "username": "root",
+        "password": null,
+        "database": "aaa",
+        "host": "localhost",
+        "dialect": "mysql",
+        "operatorsAliases": 0,
+        "dialectOptions": {
+            "dateStrings": true,
+            "typeCast": true,
+            "timezone": "+07:00"
+        },
+        "timezone": "+07:00"
+    },
+    "test": {
+        "dialect": "mysql",
+        "operatorsAliases": 0
+    },
+    "production": {
+        "dialect": "mysql",
+        "operatorsAliases": 0,
+        "dialectOptions": {
+            "dateStrings": true,
+            "typeCast": true,
+            "timezone": "+07:00"
+        },
+        "timezone": "+07:00"
+    }
+}

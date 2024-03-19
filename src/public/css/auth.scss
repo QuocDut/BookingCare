@@ -1,0 +1,57 @@
+
+body {
+    font-family: Roboto, sans-serif;
+    a {
+        text-decoration: none;
+    }
+
+}
+.invalid-feedback {
+    color: red;
+}
+.login {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    .lg-body {
+        .lg-image-background {
+            background-image: url("../images/background/header-cover.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
+            opacity: 0.9;
+            height: 600px;
+            border-radius: 3px;
+            &:hover {
+                opacity: 1;
+            }
+        }
+        .text-login {
+            display: block;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .forgot-password {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            a {
+                text-decoration: none;
+            }
+        }
+
+        .lg-register {
+            text-decoration: none;
+        }
+    }
+}
+
+.btn-register {
+    margin-top: 15px;
+}

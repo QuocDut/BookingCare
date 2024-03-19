@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HaryPhamDev - Doctors Care</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap 4.3, Jquery 3.3, font-awesome 4.7, slick-slider-->
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
+    <script src="/components/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="login">
+    <div class="container lg-body">
+        <div class="container d-flex flex-row">
+            <div class="col-6 lg-image-background">
+            </div>
+            <div class="col-6 login-form">
+                <span class="text-login">Log in to HaryPhamDev - Doctors Care</span>
+                <% if(error != ""){ %>
+                    <div class="alert alert-danger">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <form method="POST" action="/login">
+                    <div class="form-group">
+                        <label for="email">Your email address:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Your password:</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password">
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgotten password???</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-login">LOG IN</button>
+                </form>
+                <br>
+                <hr>
+                <a class="lg-register" href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to the hompage</a> <br/>
+                <a title="Click to view my Youtube channel"class="lg-register" target="_blank" href="https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1"> <i style="color: red "class="fa fa-heart" aria-hidden="true"></i> Get more free projects on my youtube channel</a><br/>
+                <a title="Click to view my Facebook Page"class="lg-register" target="_blank" href="https://facebook.com/haryphamdev"><i style="color: orange" class="fa fa-comments" aria-hidden="true"></i> Contact me via Facebook Page</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Forgotten password??? Please enter your email address to search for your account.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="input-forgot-password">Email address:</label>
+                    <input id="input-forgot-password" type="email" class="form-control" placeholder="Email...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

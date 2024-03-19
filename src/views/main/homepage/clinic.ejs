@@ -1,0 +1,277 @@
+<% extend("../app.ejs") %>
+<section class="detail-nav">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="menu-title text-decoration-none">
+                        <a href="/" class="text-decoration-none">
+                            <img class="menu-nav" src="/images/background/smile.png" alt="img logo">
+                            <span class="text-decoration-none">Doctors care</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8 d-flex flex-row justify-content-center align-self-center menu-type">
+                    <span class="d-block"><a href="/" class="text-decoration-none">Homepage</a></span>
+                    <span class="d-block mx-5"><a href="/for-patients"
+                                                  class="text-decoration-none">For patients</a></span>
+                    <span class="d-block"><a href="/for-doctors" class="text-decoration-none">For doctors</a></span>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <span><a href=" https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1" target="_blank" class="text-decoration-none">Need support?</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-info-specialization">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <a class="text-decoration-none" href="/">Homepage </a><span aria-hidden="true">&raquo;</span>
+                    <span style="text-transform: uppercase">
+                    <%= clinic.name %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-info-clinic mt-3">
+    <div class="container">
+        <div class="container">
+            <div class="row d-flex flex-row">
+                <div class="nav flex-column nav-pills col-4" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                       aria-controls="v-pills-home" aria-selected="true">SCHEDULE EXAMINATION</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                       aria-controls="v-pills-profile" aria-selected="false">INTRODUCTION</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                       aria-controls="v-pills-messages" aria-selected="false">EXAMINATION AND TREATMENT</a>
+                </div>
+                <div class="tab-content col-8" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active col-12" id="v-pills-home" role="tabpanel"
+                         aria-labelledby="v-pills-home-tab">
+                        <div class="row">
+                            <div class="col-12 content-specialization">
+                                <% doctors.forEach(function(doctor) { %>
+                                    <div class="d-flex flex-row each-doctor-spe">
+                                        <div class="left-content col-5 d-flex">
+                                            <div class="avatar-doctor-spe">
+                                                <img src="/images/users/<%= doctor.User.avatar %>">
+                                            </div>
+                                            <div class="intro-doctor-spe">
+                                                <div class="doctor-name"><%= doctor.User.name %></div>
+                                                <div class="doctor-address"><%= doctor.User.address %></div>
+                                                <div><a href="/detail/doctor/<%= doctor.User.id %>">More info...</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right-content col-7" id="clinicRightContent">
+                                            <div>
+                                                <div class="row header-booking">
+                                                    <label for="day-book-spe" class="label-booking">SCHEDULE EXAMINATION</label>
+                                                </div>
+                                                <select id="day-book-spe" class="form-control doctor-schedule-spe"
+                                                        data-doctor="<%= doctor.User.id %>">
+                                                    <% sevenDaySchedule.forEach(function(day) { %>
+                                                        <option value="<%= day %>"><%= day %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                            <div id="div-schedule-<%= doctor.User.id %>"
+                                                 data-doctor-id="<%= doctor.User.id %>"
+                                                 class=" d-flex flex-row  flex-wrap text-decoration-none">
+                                                <% if(doctor.getDataValue('schedules').length === 0){ %>
+                                                    <div class="no-schedule">
+                                                        Doctor "<%= doctor.User.name %>" does not have an appointment on
+                                                        <b><%= sevenDaySchedule[0] %></b>. Please select the next examination schedule.
+                                                    </div>
+                                                <% } %>
+                                                <% doctor.getDataValue('schedules').forEach( function(x, index) { %>
+
+                                                    <% if(x.getDataValue("isDisable") === false) { %>
+                                                        <div id="spe-btn-modal-<%= x.id %>"
+                                                             data-doctor-id="<%= doctor.User.id %>"
+                                                             data-date="<%= x.date %>"
+                                                             data-time="<%= x.time %>"
+                                                             class="text-decoration-none show-modal-at-clinic-page">
+                                                            <div class="doctor-time">
+                                                                <%= x.time %>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+
+                                                    <% if( index === doctor.getDataValue('schedules').length - 1 && x.getDataValue("isDisable") === true){ %>
+                                                        <div>
+                                                            There are no scheduled visits in the current timeframe. Please select the next scheduled exams.
+                                                        </div>
+                                                    <% } %>
+                                                <% }) %>
+                                            </div>
+                                            <div id="div-more-info-<%= doctor.User.id %>">
+                                                <% if(doctor.getDataValue('schedules').length > 0){ %>
+                                                    <div class="d-flex flex-column">
+                                                        <div>
+                                                            <span class="d-block mt-2"> Choose <i class="fa fa-hand-o-up" aria-hidden="true"></i>  and book a free consultation</span>
+                                                        </div>
+                                                        <div style="border-top: 1px solid #ccc"
+                                                             class="d-flex flex-column">
+                                                            <span class="d-block pt-3 pb-1"
+                                                                  style="text-transform: uppercase">Medical address:</span>
+                                                            <span class="d-block pb-1"
+                                                                  style="border-bottom: 1px solid #ccc"><%= doctor.User.address %></span>
+                                                        </div>
+                                                        <span class="d-block pt-2">Price: 50 USD</span>
+                                                    </div>
+                                                <% } %>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                         aria-labelledby="v-pills-profile-tab">
+                        <%- clinic.introductionHTML %>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                         aria-labelledby="v-pills-messages-tab">
+                        <pre><%= clinic.description %></pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalBookingClinicDoctor">
+    <div class="modal-dialog mw-100 w-75" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Make a medical appointment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-5" style="border-right: 1px solid #ccc;" id="infoDoctorSpe">
+                        <label class="text-label" style="padding-top: 7px">Doctor information:</label>
+                        <div class="d-flex flex-row">
+                            <img class="avatar-doctor-modal" id="modal-avatar-doctor-spe">
+                            <div class="ml-3">
+                                <span class="d-block" id="doctor-name-spe"></span>
+                                <div class="time-booking" id="time-patient-booking"></div>
+                                <div class="time-booking" id="date-patient-booking"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4" id="doctor-address-spe">
+                        </div>
+                        <div class="mt-3">Free appointment appointment</div>
+                        <div class="mt-3">Price: 50 USD</div>
+                    </div>
+                    <div class="col-7">
+                        <form id="form-patient-info-spe">
+                            <div class="form-group">
+                                <label for="patient-name" class="col-form-label text-label">Patient information:</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                       placeholder="Full name">
+                                <div class="invalid-feedback">
+                                    Patient names cannot be left blank
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                           id="selectMale" value="male" checked>
+                                    <label class="form-check-label" for="selectMale">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                           id="selectFemale" value="female">
+                                    <label class="form-check-label" for="selectFemale">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                       placeholder="Phone number">
+                                <div class="invalid-feedback"> Invalid phone number</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                <div class="invalid-feedback"> Invalid email</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="year" name="year" placeholder="Year">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="address" name="address"
+                                       placeholder="Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Reason for examination:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="extraInfo" class="col-form-label">Additional information (optional)
+                                    <span id="viewExtraInfo" class="view viewExtraInfo">(View): </span> </label>
+                                <div class="extraInfo d-none" id="divExtraInfo">
+                                     <textarea class="form-control" id="breath"
+                                               placeholder="Respiratory history note (if applicable)"
+                                               name="breath"></textarea>
+                                    <div class="form-group">
+                                        <label class="mt-2 col-form-label w-100">Have ever visited at (since the last 15 days):</label>
+
+                                        <% places.forEach(function(place) { %>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="places"
+                                                       id="selectPlace<%= place.id %>" value="<%= place.id %>">
+                                                <label class="form-check-label"
+                                                       for="selectPlace<%= place.id %>"><%= place.name %></label>
+                                            </div>
+                                        <% }) %>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="places"
+                                                   id="selectNone" value="none" checked>
+                                            <label class="form-check-label" for="selectNone">Never visited</label>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <label>There are prior examinations:</label>
+                                            <div class="d-flex ">
+                                                <label class="mr-2" for="oldForms">Upload images: </label>
+                                                <input name="oldForms" id="oldForms" type="file" accept="image/*"
+                                                       multiple>
+                                            </div>
+                                            <textarea class="form-control mt-2" id="extraOldForms"
+                                                      placeholder="Additional information, if any (doctor, place of examination, etc.)"
+                                                      name="extraOldForms"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="processLoading" class="process-loading d-none"><span
+                            class="d-block mx-2"> <strong>Processing</strong></span>
+                    <div class="loader"></div>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-primary" id="btn-confirm-booking-spe">Confirm medical appointment</button>
+            </div>
+        </div>
+    </div>
+</div>

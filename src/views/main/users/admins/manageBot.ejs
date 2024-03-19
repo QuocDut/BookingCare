@@ -1,0 +1,65 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage Facebook Bot  (Wit.ai)</h1>
+    <a href="/supporter/manage/specialization/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus-circle fa-sm text-white-50"></i> Add new</a>
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="my-3 font-weight-bold text-primary">List of created entites</h6>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <% entityName.forEach(function(name, index) { %>
+                <li class="nav-item ">
+                    <a class="nav-link <% if(index === 0){ %> active  <% } %>" id="<%= name %>-new-tab"
+                       data-toggle="tab" href="#<%= name %>-link" role="tab"
+                       aria-controls="home" aria-selected="true"> <%= name %> </a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="tab-content" id="myTabContent">
+                <% entities.forEach(function(entity, index) { %>
+                    <div class="tab-pane fade <% if(index === 0){ %> show active  <% } %>" id="<%= entity.name %>-link"
+                         role="tabpanel"
+                         aria-labelledby="patient-new-tab">
+                        <table class="table table-bordered" id="tableNewPatients" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Value</th>
+                                <th class="w-50">Expressions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% entity.values.forEach(function(x) { %>
+                                <tr>
+                                    <td><%= entity.lookups %></td>
+                                    <td><%= x.value %></td>
+                                    <td>
+                                        <% x.expressions.forEach(function(ex) { %>
+                                            <button class="btn btn-outline-info m-2" > <%= ex %></button>
+                                        <% }) %>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("div #collapseUtilities").addClass('show');
+        $("div #collapseUtilities").find($("#aManageBot")).addClass("active");
+        $(".supporter-list-posts").removeClass("active");
+    });
+</script>

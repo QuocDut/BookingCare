@@ -1,0 +1,67 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage Posts</h1>
+    <a href="/supporter/manage/post/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus-circle fa-sm text-white-50"></i> Add new</a>
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of new posts</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered display " id="listPostsTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% posts.rows.forEach(function(post) { %>
+                    <tr>
+                        <td> <%= post.id %></td>
+                        <td><%= post.title %></td>
+                        <td><%= post.getDataValue('writerName') %></td>
+                        <td><%= post.getDataValue('dateClient') %></td>
+                        <td class="">
+                            <a class="" href="/supporter/post/edit/<%= post.id %>" title="Edit"><i class="fas fa-pen-square mx-3"></i></a>
+                            <a class="delete-post" href="#" data-post-id="<%= post.id%>" title="Delete"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+
+            <nav aria-label="navigation" id="paginationForPost" data-total="<%= total %>">
+                <ul class="pagination">
+                    <li class="page-item disabled li-pre">
+                        <a class="page-link page-post-pre" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Prev</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item ml-3 li-next">
+                        <a class="page-link page-post-next" href="#" aria-label="Next">
+                            <span aria-hidden="true">Next &raquo; </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $(".supporter-list-posts").addClass("active");
+    });
+</script>

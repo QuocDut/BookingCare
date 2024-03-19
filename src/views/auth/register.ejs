@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Register a new account with Doctors Care</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap 4.3, Jquery 3.3, font-awesome 4.7, slick-slider-->
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
+    <script src="/components/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="login">
+    <div class="container lg-body">
+        <div class="container d-flex flex-row">
+            <div class="col-6 lg-image-background">
+            </div>
+            <div class="col-6 login-form">
+                <span class="text-login">Register a new account </span>
+                <% if(locals.hasErrors){ %>
+                    <p style="color: red">Something's wrong, please check your information</p>
+                <% } %>
+                <form method="POST" action="/register">
+                    <div class="form-group">
+                        <label for="name">Full name:</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               value="<% if (locals.oldData) { %> <%= locals.oldData.name %> <% } %>"
+                               placeholder="Full name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *:</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="Email address..."
+                               value="<% if (locals.oldData) { %> <%= locals.oldData.email %> <% } %>">
+                        <% if (locals.errEmail) { %>
+                            <small class="form-text invalid-feedback"><%= locals.errEmail %></small>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password *:</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password...">
+                        <% if (locals.errPassword) { %>
+                            <small class="form-text invalid-feedback"><%= locals.errPassword %></small>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="rg-password-again"> Confirm password *:</label>
+                        <input type="password" class="form-control" id="rg-password-again" name="passwordConfirm"
+                               placeholder="Confirm password...">
+                        <% if (locals.errPasswordConfirm) { %>
+                            <small class="form-text invalid-feedback"><%= locals.errPasswordConfirm %></small>
+                        <% } %>
+                    </div>
+
+                    <div>
+                        <span>(Information marked with * is required)</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-register">REGISTER</button>
+                </form>
+                <br>
+                <hr>
+                <span>Already had an account? <a class="lg-register" href="/login">Back to Login page</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

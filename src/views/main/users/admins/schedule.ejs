@@ -1,0 +1,70 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage your plan for the week</h1>
+    <a href="/doctor/manage/schedule/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus-circle fa-sm text-white-50"></i> Add new</a>
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Plan created (3 days)</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td> <%= threeDaySchedules[0] %> </td>
+                    <td>
+                        <% schedules.forEach(function(x) { %>
+                            <% if(x.date === threeDaySchedules[0] ) { %>
+                                <button class="btn btn-outline-warning mr-3 mt-1 mb-3"><%= x.time %></button>
+                            <% } %>
+                        <% }) %>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td> <%= threeDaySchedules[1] %> </td>
+                    <td>
+                        <% schedules.forEach(function(x) { %>
+                            <% if(x.date === threeDaySchedules[1] ) { %>
+                                <button class="btn btn-outline-warning mr-3 mt-1 mb-3"><%= x.time %></button>
+                            <% } %>
+                        <% }) %>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td> <%= threeDaySchedules[2] %> </td>
+                    <td>
+                        <% schedules.forEach(function(x) { %>
+                            <% if(x.date === threeDaySchedules[2] ) { %>
+                                <button class="btn btn-outline-warning mr-3 mt-1 mb-3"><%= x.time %></button>
+                            <% } %>
+                        <% }) %>
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $("#liSchedule").addClass('active');
+    })
+</script>

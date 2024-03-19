@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Đặt lịch khám online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap 4.3, Jquery 3.3, font-awesome 4.7, slick-slider-->
+    <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .fix-height {
+            flex: 1;
+        }
+
+        a, a:hover, a:focus {
+            text-decoration: none;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 22px;
+            display: block;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container fix-height">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mt-3">
+                <span class="title">Information to schedule medical examination</span>
+            </div>
+            <input type="text" id="psid" hidden>
+            <div class="form-group">
+                <label for="customerName">Full name:</label>
+                <input type="text" id="customerName" class="form-control" placeholder="Full name...">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone number (<span style="color: red">*</span>):</label>
+                <input type="text" id="phone" class="form-control" placeholder="Phone number...">
+                <div class="invalid-feedback">Please enter a valid phone number .</div>
+            </div>
+            <div class="form-group">
+                <label for="reason">Reasons for examination(<span style="color: red">*</span>):</label>
+                <textarea rows="3" id="reason" class="form-control" placeholder="Summary of reasons for examination"></textarea>
+                <div class="invalid-feedback">Please enter the reason for the examination.</div>
+            </div>
+            <button class="btn btn-primary" id="btnBooking">Submit</button>
+        </div>
+
+    </div>
+
+</div>
+<footer>
+    <div class="text-center">
+        <div class="text-center">
+        <span>Copyright &copy; <a title="More info"
+                                  href="https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1"
+                                  target="_blank">HaryPhamDev - Doctors Care -  2020</a></span>
+        </div>
+    </div>
+</footer>
+
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/js/bookingOnline.js"></script>
+</body>
+</html>

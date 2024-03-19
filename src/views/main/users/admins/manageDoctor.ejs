@@ -1,0 +1,108 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage doctors</h1>
+    <a href="/users/manage/doctor/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus-circle fa-sm text-white-50"></i> Add new</a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of doctors</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialist</th>
+                    <th>Clinic</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% doctors.forEach(function(doctor) { %>
+                    <tr>
+                        <td><%= doctor.id %></td>
+                        <td><%= doctor.name %></td>
+                        <td><%= doctor.getDataValue('specializationName') %></td>
+                        <td><%= doctor.getDataValue('clinicName') %></td>
+                        <td>
+                            <% if(doctor.isActive) {%> Active
+                           <%} else {%> Inactive
+                            <%}%>
+                        </td>
+                        <td class="">
+                            <a class="show-doctor-info" data-doctor-id="<%= doctor.id%>" href="#" title="View info"><i class="fas fa-info-circle"></i></a>
+                            <a class="edit-doctor-info" href="/users/doctor/edit/<%= doctor.id %>" title="Edit"><i class="fas fa-pen-square mx-3"></i></a>
+                            <a class="delete-doctor-info" data-doctor-id="<%= doctor.id%>" href="#" title="Delete"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalInfoDoctor">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Doctor information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-row">
+                            <div class="form-group col-7">
+                                <label for="nameDoctor" class="col-form-label text-label">Name</label>
+                                <input type="text" class="form-control" id="nameDoctor" disabled>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="phoneDoctor" class="col-form-label text-label">Phone number</label>
+                                <input type="text" class="form-control" id="phoneDoctor" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="clinicDoctor" class="col-form-label text-label">Clinic</label>
+                                <input type="text" class="form-control" id="clinicDoctor" disabled>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="specializationDoctor" class="col-form-label text-label">Specialist</label>
+                                <input type="text" class="form-control" id="specializationDoctor" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressDoctor" class="col-form-label text-label">Address</label>
+                            <input type="text" class="form-control" id="addressDoctor" name="addressDoctor" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label text-label"> Avatar:</label>
+                            <div id="imageDoctor"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("div #featureManage").addClass('show');
+        $("div #featureManage").find($("#aManageDoctor")).addClass("active");
+        $(".supporter-list-posts").removeClass("active");
+    })
+</script>

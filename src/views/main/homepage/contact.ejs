@@ -1,0 +1,96 @@
+<% extend("../app.ejs") %>
+<section class="detail-nav">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="menu-title text-decoration-none">
+                        <a href="/" class="text-decoration-none">
+                            <img class="menu-nav" src="/images/background/smile.png" alt="img logo">
+                            <span class="text-decoration-none">Doctors care</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8 d-flex flex-row justify-content-center align-self-center menu-type">
+                    <span class="d-block"><a href="/" class="text-decoration-none">Homepage</a></span>
+                    <span class="d-block mx-5"><a href="/for-patients" class="text-decoration-none">For patients</a></span>
+                    <span class="d-block"><a href="/for-doctors" class="text-decoration-none">For doctors</a></span>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <span><a href=" https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1" target="_blank" class="text-decoration-none">Need support?</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-info-specialization">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <a class="text-decoration-none" href="/">Homepage </a><span aria-hidden="true">&raquo;</span>
+                    <span style="text-transform: uppercase">
+                    Contact cooperation
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-info-clinic mt-3">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 mx-auto">
+                    <h2>Work with DoctorsCare</h2>
+                    <hr>
+                    <div>
+                        BookingCare is honored to partner with doctors and medical facilities.
+                        Please send information, we will contact you as soon as possible.
+                        It is a pleasure to cooperate with doctors and medical facilities. Please send information, we will contact you as soon as possible.
+                    </div>
+                    <form>
+                        <div class="form-row mt-4">
+                            <div class="col">
+                                <label for="contactName">Contact</label>
+                                <input class="form-control" name="contactName" id="contactName" type="text"
+                                       placeholder="Contact">
+                            </div>
+                            <div class="col">
+                                <label for="contactEmail">Email address</label>
+                                <input class="form-control" name="contactEmail" id="contactEmail" type="text"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-5">
+                                <label for="contactPhone">Phone number</label>
+                                <input class="form-control" name="contactPhone" id="contactPhone" type="text"
+                                       placeholder="Phone number">
+                            </div>
+                            <div class="col-7">
+                                <label for="contactCompany">Name of the medical facility</label>
+                                <input class="form-control" name="contactCompany" id="contactCompany" type="text"
+                                       placeholder="Hospitals, clinics, organizations, companies">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label for="contactAddress">Address</label>
+                            <input class="form-control" name="contactName" id="contactName" type="text"
+                                   placeholder="Address">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="contactContent">Content</label>
+                            <textarea class="form-control" name="contactContent" id="contactContent"
+                                      type="text"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <button type="button" class="btn btn-primary" id="sendContact">Send information</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,262 @@
+<% extend("../app.ejs") %>
+<section class="mt-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <div class="homepage-logo mt-2">
+                    <img class="menu-nav" src="../images/background/menu-nav.png" alt="img logo">
+                    <span>Doctors care</span>
+                </div>
+                <div class="home-nav">
+                    <div class="nav-item">
+                        <% if(user){%>
+                            <a href="/users" target="_blank">Dashboard</a>
+
+                            <%} else {%>
+                                <a href="/login">Log in</a>
+                            <% }%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 d-none d-md-block d-md-flex justify-content-between ">
+                <div class="d-flex flex-column">
+                    <span>Specialist</span>
+                    <span>Search by specialist doctor</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span>Health facilities</span>
+                    <span>Choose hospitals, clinics</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span>Doctors</span>
+                    <span>Choose good doctors</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span>Examination package</span>
+                    <span>General health check</span>
+                </div>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center">
+                <span title="Have questions?"><a href="https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1" target="_blank" class="text-decoration-none">Do you need support?</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="sec-header d-flex flex-column">
+    <div class="img-header d-flex flex-column mt-3 ">
+        <div class="text-center mt-5"><span style="font-size: 25px">SPECIALIZED EXPLORE BOOKING PLATFORM</span></div>
+        <div class="header-search align-self-center justify-content-center mt-5">
+            <i class="fa fa-search"></i>
+            <label for="input-search"></label>
+            <input id="input-search" placeholder="Looking for information...">
+            <div id="show-info-search" class="show-info-search">
+
+            </div>
+        </div>
+    </div>
+    <div class="content-header d-flex  justify-content-between title-and-icon align-items-center">
+        <div class="d-flex flex-column ml-5 pl-5 align-items-center">
+            <i class="fa fa-check"></i>
+            <span>Prestigious hospitals</span>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <i class="fa fa-thumbs-up"></i>
+            <span>Good clinics</span>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <i class="fa fa-user-md"></i>
+            <span>Out standing doctors</span>
+        </div>
+        <div class="d-flex flex-column mr-5 pr-5 align-items-center">
+            <i class="fa fa-clock-o"></i>
+            <span>Priority examination</span>
+        </div>
+    </div>
+</section>
+<section class="sec-fields-hospital d-flex flex-column">
+    <div class="sec-fields-title mx-auto d-flex my-3">
+        <h2 class="">Popular specialties</h2>
+        <a class="flex-grow-1 my-auto"><span class="d-block show-all-specializations">All specialties</span></a>
+    </div>
+    <div class="section-slide">
+        <div class="slider slider-nav text-decoration-none">
+            <% specializations.forEach(function(x) { %>
+                <a href="/detail/specialization/<%= x.id %>" class="a-specialization text-decoration-none"
+                   style="outline: none">
+                    <div class="d-flex flex-column slide-fields specialization" data-specialization="<%= x.id %>">
+                        <img src="/images/specializations/<%= x.image %>" alt="image bla bla">
+                        <h3 class="text-decoration-none"><%= x.name %></h3>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<section class="sec-hospitals">
+    <div class="sec-fields-title mx-auto d-flex my-3">
+        <h2 class="">Top clinics</h2>
+        <a class="flex-grow-1 my-auto"><span class="d-block show-all-clinics">All clinics</span></a>
+    </div>
+    <div class="section-slide">
+        <div class="slider slider-nav text-decoration-none">
+            <% clinics.forEach(function(clinic) { %>
+                <a href="/detail/clinic/<%= clinic.id %>" class="text-decoration-none" style="outline: none">
+                    <div class="d-flex flex-column slide-fields clinics" data-clinic="<%= clinic.id %>">
+                        <img src="/images/clinics/<%= clinic.image %>"
+                             alt="image bla bla">
+                        <h3><%= clinic.name %></h3>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<section class="sec-doctors">
+    <div class="sec-fields-title mx-auto d-flex my-3">
+        <h2 class="">Out standing doctors</h2>
+        <a class="flex-grow-1 my-auto"><span class="d-block show-all-doctors">All doctors</span></a>
+    </div>
+    <div class="section-slide">
+        <div class="slider slider-nav text-decoration-none">
+            <% doctors.forEach(function(doctor) { %>
+                <a href="/detail/doctor/<%= doctor.id %>" class="text-decoration-none" style="outline: none">
+                    <div class="slide-doctors text-decoration-none">
+                        <div class="doctor-avatar">
+                            <img src="/images/users/<%= doctor.avatar %>"
+                                 alt="image bla bla">
+                            <h3 style="color: black"><%= doctor.name %></h3>
+                            <h4 style="color: black"><%= doctor.getDataValue('specializationName') %></h4>
+                            <span title="Counting the number of patients have been booked" style="color: #0056b3"> <%= doctor.getDataValue('countBooking') %> patients (booked)</span>
+                        </div>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<section class="sec-posts">
+    <div class="sec-fields-title mx-auto d-flex my-3">
+        <h2 class="">Handbooks</h2>
+        <a class="flex-grow-1 my-auto text-decoration-none" href="/all-posts"><span class="d-block text-decoration-none">All posts</span></a>
+    </div>
+    <div class="section-slide">
+        <div class="slider slider-nav-posts">
+            <% posts.forEach(function(post) { %>
+                <a href="/detail/post/<%= post.id %>" class="text-decoration-none" style="outline: none">
+                    <div class="d-flex flex-row slide-post">
+                        <div class="img-post">
+                            <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/113541benh-vien-bao-son.jpg"
+                                 alt="image bla bla">
+                        </div>
+                        <div class="content-post">
+                            <h3>
+                                <%= post.title %>
+                            </h3>
+                            <p>
+                                <%= post.getDataValue('content') %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<section class="sec-for-doctors">
+
+<div class="d-flex flex-row mx-auto main-for-doctors">
+    <div class="d-flex flex-column col-5">
+        <h1 class="mt-4">For doctors</h1>
+        <span class="mt-3 mb-1">Build credibility and brand online</span>
+        <span>Increase the number of patients and manage effectively</span>
+        <a href="/contact" class="mt-5 pd-3 contact-admin text-decoration-none">CONTACT COOPERATION</a>
+    </div>
+    <div class="col-7 d-flex justify-content-end" style="padding-top: 5px">
+        <iframe width="500" height="290" src="https://www.youtube.com/embed/25PzpAdndSs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+</section>
+
+<!-- Modal show all specializations-->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalAllSpecializations">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">All specialties</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row all-specializations-body px-2">
+                    <% specializations.forEach(function(x) { %>
+                        <div class="col-12 col-spe pl-3"><a href="/detail/specialization/<%= x.id %>" class="text-decoration-none"><%= x.name %> </a></div>
+                        <% }) %>
+                        <div class="col-12 col-spe pl-3"><a href="/all-specializations" class="text-decoration-none">View all</a></div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-confirm-booking-spe"  data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal show all clinics-->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalAllClinics">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">All clinics</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row all-specializations-body px-2">
+                    <% clinics.forEach(function(x) { %>
+                        <div class="col-12 col-spe pl-3"><a href="/detail/clinic/<%= x.id %>" class="text-decoration-none"><%= x.name %> </a></div>
+                    <% }) %>
+                        <div class="col-12 col-spe pl-3"><a href="/all-clinics" class="text-decoration-none">View all</a></div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-confirm-booking-spe"  data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal show all doctors-->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalAllDoctors">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">All doctors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row all-doctors-body px-2">
+                    <% doctors.forEach(function(x) { %>
+                        <div class="col-12 col-spe pl-3"><a href="/detail/doctor/<%= x.id %>" class="text-decoration-none"><%= x.name %> </a></div>
+                    <% }) %>
+                </div>
+                <div class="row all-doctors-body px-2">
+                        <div class="col-12 col-spe pl-3"><a href="/all-doctors %>" class="text-decoration-none">View all</a></div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-confirm-booking-spe"  data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

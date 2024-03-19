@@ -1,0 +1,52 @@
+{
+  "name": "be-doctor-care",
+  "version": "1.0.0",
+  "description": "doctor care backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "Hary Pham",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-session-sequelize": "^6.1.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "elasticsearch": "^16.6.0",
+    "express": "^4.17.1",
+    "express-ejs-extend": "0.0.1",
+    "express-mysql-session": "^2.1.3",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.20",
+    "method-override": "^3.0.0",
+    "minizip-asm.js": "^1.0.10",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.4",
+    "nodemon": "^2.0.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "remove-markdown": "^0.3.0",
+    "request": "^2.88.2",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "striptags": "^3.1.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1"
+  }
+}

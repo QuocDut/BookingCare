@@ -1,0 +1,67 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add a clinic schedule</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-10 mx-auto">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="datepicker">Select date:</label>
+                <input class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="doctor">Doctor</label>
+                <input type="text" id="doctor" class="form-control" disabled value="<%= user.name %>">
+            </div>
+        </div>
+        <div class="mb-4">
+            <span>Select time period:</span>
+            <div id="lsBtnSchedule">
+                <button id="time-08-09" type="button" class="btn  btn-light mr-3 my-3 btn-schedule" value="08:00 - 09:00"> 08:00 - 09:00
+                </button>
+                <button id="time-09-10" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="09:00 - 10:00"> 09:00 - 10:00
+                </button>
+                <button id="time-10-11" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="10:00 - 11:00"> 10:00 - 11:00
+                </button>
+                <button id="time-11-12" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="11:00 - 12:00"> 11:00 - 12:00
+                </button>
+                <button id="time-13-14" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="13:00 - 14:00"> 13:00 - 14:00
+                </button>
+                <button id="time-14-15" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="14:00 - 15:00"> 14:00 - 15:00
+                </button>
+                <button id="time-15-16" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="15:00 - 16:00"> 15:00 - 16:00
+                </button>
+                <button id="time-16-17" type="button" class="btn btn-light mr-3 my-3 btn-schedule" value="16:00 - 17:00"> 16:00 - 17:00
+                </button>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary mb-3" id="createNewScheduleDoctor">Save</button>
+
+        <div>
+            <span>Selected range: (not saved)</span>
+            <div>
+                <table class="table table-bordered" id="tableCreateSchedule" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Range</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#liSchedule").addClass('active');
+    });
+</script>

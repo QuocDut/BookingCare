@@ -1,0 +1,497 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">List of appointment appointments</h1>
+
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of appointment appointments</h6>
+        <div class="my-3">
+            <label for="dateDoctorAppointment">Time: </label>
+            <form method="GET" action="/doctor/manage/appointment">
+                <div class="form-row">
+                    <input id="dateDoctorAppointment" name="dateDoctorAppointment" value="<%= date %>" type="text"
+                           class="form-control col-4 mr-4">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Time</th>
+                    <th>No</th>
+                    <th> Name</th>
+                    <th>Gender</th>
+                    <th> Action</th>
+                </tr>
+                <% if(appointments['08:00 - 09:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['08:00 - 09:00'].length + 1 %>"><b>8h - 9h</b></td>
+                    </tr>
+                    <% appointments['08:00 - 09:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Male
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td class="mw-100 w-25">
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['09:00 - 10:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['09:00 - 10:00'].length + 1 %>"><b>9h - 10h</b></td>
+                    </tr>
+                    <% appointments['09:00 - 10:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Male
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['10:00 - 11:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['10:00 - 11:00'].length + 1 %>"><b>10h - 11h</b></td>
+                    </tr>
+                    <% appointments['10:00 - 11:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['11:00 - 12:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['11:00 - 12:00'].length + 1 %>"><b>11h - 12h</b></td>
+                    </tr>
+                    <% appointments['11:00 - 12:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['13:00 - 14:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['13:00 - 14:00'].length + 1 %>"><b>13h - 14h</b></td>
+                    </tr>
+                    <% appointments['13:00 - 14:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['14:00 - 15:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['14:00 - 15:00'].length + 1 %>"><b>14h - 15h</b></td>
+                    </tr>
+                    <% appointments['14:00 - 15:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['15:00 - 16:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['15:00 - 16:00'].length + 1 %>"><b>15h - 16h</b></td>
+                    </tr>
+                    <% appointments['15:00 - 16:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+                <% if(appointments['16:00 - 17:00']) { %>
+                    <tr>
+                        <td rowspan="<%= appointments['16:00 - 17:00'].length + 1 %>"><b>16h - 17h</b></td>
+                    </tr>
+                    <% appointments['16:00 - 17:00'].forEach(function(x, index) { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= x.name %></td>
+                            <td>
+                                <% if(x.gender === 'male') { %> Female
+                                <% } %>
+                                <% if(x.gender === 'female') { %> Female
+                                <% } %>
+                            </td>
+                            <td>
+                                <button title="View patient's information" type="button" data-patient-id="<%= x.id %>"
+                                        class="btn btn-info doctor-view-detail">Detail
+                                </button>
+                                <button title="Send the bill to the patient who has completed the examination" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    Send the Invoice
+                                </button>
+                                <% if(x.isSentForms){ %>
+                                    <i title="Invoice sent" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
+                                       aria-hidden="true"></i>
+                                <% } else { %>
+                                    <i title="Have not sent an invoice" data-patient-id="<%= x.id %>" class="fa fa-exclamation-circle" style="color: #f6c23e"
+                                       aria-hidden="true"></i>
+                                <% } %>
+                                <i class="fa fa-trash-o" style="cursor: pointer" data-patient-id="<%= x.id %>" aria-hidden="true"
+                                   title="Cancellation of examination with the patient"></i>
+
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal detail info patient-->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalDetailPatientForDoctor">
+    <div class="modal-dialog mw-100 w-75" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Patient information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label class="col-form-label text-label" for="patientName">Name:</label>
+                        <input type="text" class="form-control" id="patientName" name="patientName">
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="col-form-label text-label" for="patientPhone">Phone number:</label>
+                        <input type="text" class="form-control" id="patientPhone" name="patientPhone">
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="col-form-label text-label" for="patientEmail">Email:</label>
+                        <input type="email" class="form-control" id="patientEmail" name="patientEmail">
+                    </div>
+                    <div class="form-group col-2">
+                        <label class="col-form-label text-label" for="patientDate">Date:</label>
+                        <input type="text" class="form-control" id="patientDate" name="patientDate" readonly>
+                    </div>
+                    <div class="form-group col-2">
+                        <label class="col-form-label text-label" for="patientTime">Time:</label>
+                        <input type="text" class="form-control" id="patientTime" name="patientTime" readonly>
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="col-form-label text-label" for="patientReason">Reason:</label>
+                        <textarea class="form-control" name="patientReason" id="patientReason"></textarea>
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="col-form-label text-label" for="patientAddress">Address:</label>
+                        <textarea class="form-control" name="patientAddress" id="patientAddress"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="patientAddress">Extra info:</label>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label class="col-form-label text-label" for="patientHistoryBreath">History of respiratory tract diseases:</label>
+                        <textarea class="form-control" name="patientHistoryBreath" id="patientHistoryBreath"></textarea>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label class="col-form-label text-label" for="patientMoreInfo">Information on previous exams:</label>
+                        <textarea class="form-control" name="patientMoreInfo" id="patientMoreInfo"></textarea>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label class="col-form-label text-label" for="patientNote">Note:</label>
+                        <textarea class="form-control" name="patientNote" id="patientNote"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-form-label text-label">Photo of previous examination:</div>
+                        <div id="imageOldForms">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="ml-3 btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal send forms -->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="modalSendForms">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="patient-info-tab" data-toggle="tab" href="#patientInfoTab"
+                           role="tab" aria-controls="home" aria-selected="true">Send invoice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="files-send-tab" data-toggle="tab" href="#filesSendTas" role="tab"
+                           aria-controls="profile" aria-selected="false">Sent</a>
+                    </li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="patientInfoTab" role="tabpanel"
+                         aria-labelledby="patient-info-tab">
+                        <form id="formSendFormsForPatient">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label class="col-form-label text-label" for="emailPatient">Email :</label>
+                                    <input type="text" class="form-control" id="emailPatient" name="emailPatient">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label class="col-form-label text-label" for="filesSend">Choose files:</label>
+                                    <input type="file" class="form-control-file" id="filesSend" name="filesSend"
+                                           multiple>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="d-flex justify-content-end mr-3">
+                                <div id="processLoadingAdmin" class="process-loading-admin d-none"> <span class="d-block mx-2"> <strong>Processing</strong></span><div class="loader"></div> </div>
+                                <button type="button" class="btn btn-primary" id="btnSendFilesForms"> Send</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade " id="filesSendTas" role="tabpanel" aria-labelledby="files-send-tab">
+                        <div class="form-row">
+                            <div class="col-6">
+                              <label>Files sent:</label>
+                            </div>
+
+                        </div>
+                        <div id="divGenerateFilesSend">
+
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-end mr-3">
+                            <button type="button" class="btn btn-secondary ml-3" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $("#listAppointment").addClass('active');
+    })
+</script>

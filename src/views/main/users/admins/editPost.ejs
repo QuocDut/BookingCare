@@ -1,0 +1,74 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Update a post's information</h1>
+</div>
+<!-- Content Row -->
+<div class="row">
+    <div class="col-10 mx-auto">
+        <form id="formUpdatePost">
+            <div class="form-group">
+                <label for="titlePost">Title</label>
+                <input type="text" class="form-control" id="titlePost" name="titlePost" placeholder="Post's title" value="<%= post.title%>">
+            </div>
+            <div class="form-group">
+                <label for="address">The post serves:</label>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <select id="forDoctorId" class="form-control" name="forDoctorId">
+                            <% if(post.forDoctorId > 0) { %>
+                                <% doctors.forEach(function(x) { %>
+                                    <option value="<%= x.id %>" <% if(x.id === post.forDoctorId){%> selected <%}%>  > <%= x.name %> </option>
+                                <% }) %>
+                            <% } else { %>
+                                <option value="-1" selected>No doctors are chosen</option>
+                                <% doctors.forEach(function(x) { %>
+                                    <option value="<%= x.id %>"> <%= x.name %> </option>
+                                <% }) %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        <select id="forClinicId" class="form-control" name="forClinicId">
+                            <% if(post.forClinicId > 0) { %>
+                                <% clinics.forEach(function(x) { %>
+                                    <option value="<%= x.id %>" <% if(x.id === post.forClinicId){%> selected <%}%>> <%= x.name %> </option>
+                                <% }) %>
+                            <% } else { %>
+                                <option value="-1" selected>No clinics are chosen</option>
+                                <% clinics.forEach(function(x) { %>
+                                    <option value="<%= x.id %>"> <%= x.name %> </option>
+                                <% }) %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        <select id="forSpecializationId" class="form-control" name="forSpecializationId">
+                            <% if(post.forSpecializationId > 0) { %>
+                                <% specializations.forEach(function(x) { %>
+                                    <option value="<%= x.id %>" <% if(x.id === post.forSpecializationId){%> selected <%}%>> <%= x.name %> </option>
+                                <% }) %>
+                            <% } else { %>
+                                <option value="-1" selected>No specialist are chosen</option>
+                                <% specializations.forEach(function(x) { %>
+                                    <option value="<%= x.id %>"> <%= x.name %> </option>
+                                <% }) %>
+                            <% } %>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contentMarkdown">Description</label>
+                <textarea id="contentMarkdown" class="form-control"><%= post.contentMarkdown%></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="btnUpdatePost" data-post-id="<%= post.id %>">Update</button>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".supporter-list-posts").addClass("active");
+    });
+</script>

@@ -1,0 +1,56 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage your doctor's medical schedule</h1>
+    <button id="addScheduleAllDoctors" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus-circle fa-sm text-white-50"></i> Add schedule for all doctors</button>
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of schedule</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered display " id="listSpecializations" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>doctorId</th>
+                    <th>date</th>
+                    <th>time</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $("div #collapseUtilities").addClass('show');
+        $("div #collapseUtilities").find($("#aManageCreateScheduleDoctors")).addClass("active");
+        $(".supporter-list-posts").removeClass("active");
+
+        $('#addScheduleAllDoctors').on('click', function(event) {
+            if (!confirm('This action will create schedule for all doctor in the next 3 days. Continue?')) {
+                return;
+            }
+            $.ajax({
+                method: "POST",
+                url: `${window.location.origin}/doctor/auto-create-all-doctors-schedule`,
+                success: function(data) {
+                    alert(data);
+                },
+                error: function(error) {
+                    alert(error)
+                    console.log(error)
+                }
+            });
+        });
+    });
+</script>

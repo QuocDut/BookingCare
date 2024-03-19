@@ -1,0 +1,75 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Statistical</h1>
+
+</div>
+
+<!-- Content Row -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Statistics of patients examined in the month</h6>
+    </div>
+    <div class="card-body">
+        <div class="">
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $("#listChart").addClass('active');
+        let m = new Date().getMonth() + 1;
+        $.ajax({
+            method: 'POST',
+            data: { month: m },
+            url: `${window.location.origin}/doctor/manage/create-chart`,
+            success: function(data) {
+                let countNotSendForms = 0;
+                let countSuccess = 0;
+                if (data.patients.count > 0) {
+                    data.patients.rows.forEach((patient) => {
+                        if (patient.isSentForms === false) {
+                            countNotSendForms++;
+                        }
+                        if (patient.statusId === 1) {
+                            countSuccess++;
+                        }
+                    })
+                    let one = data.patients.count;
+                    let two = countSuccess;
+                    let three = data.patients.count - countNotSendForms;
+                    let chart = new CanvasJS.Chart("chartContainer", {
+                        animationEnabled: true,
+                        theme: "light2", // "light1", "light2", "dark1", "dark2"
+                        title: {
+                            text: "statistical"
+                        },
+                        axisY: {
+                            title: "Total number of patients",
+                            includeZero: false
+                        },
+
+                        data: [ {
+                            type: "column",
+                            dataPoints: [
+                                { label: "New patients", y: one },
+                                { label: "The patient examined successfully", y: two },
+                                { label: "Total invoice sent", y: three },
+                            ]
+                        } ]
+                    });
+                    chart.render();
+                }
+            },
+            error: function(error) {
+                alertify.error('An error occurred while getting statistical information, please try again later');
+                console.log(error);
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,87 @@
+<% extend("../app.ejs") %>
+<section class="detail-nav">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="menu-title text-decoration-none">
+                        <a href="/" class="text-decoration-none">
+                            <img class="menu-nav" src="/images/background/smile.png" alt="img logo">
+                            <span class="text-decoration-none">Doctors care</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8 d-flex flex-row justify-content-center align-self-center menu-type">
+                    <span class="d-block"><a href="/" class="text-decoration-none">Homepage</a></span>
+                    <span class="d-block mx-5"><a href="/for-patients" class="text-decoration-none">For patients</a></span>
+                    <span class="d-block"><a href="/for-doctors" class="text-decoration-none">For doctors</a></span>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <span><a href=" https://www.youtube.com/channel/UCHqJxLo7mKam9GKqqwr2wfA?sub_confirmation=1" target="_blank" class="text-decoration-none">Need support?</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-info-specialization">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <a class="text-decoration-none" href="/">Homepage </a><span aria-hidden="true">&raquo;</span>
+                    <span style="text-transform: uppercase">
+                    Post list
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-all-posts mt-3">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 ">
+                    <h2></h2>
+                    <hr>
+                    <div id="list-posts-client">
+                        <% posts.rows.forEach(function(post) { %>
+                            <a class="text-decoration-none" href="/detail/post/<%= post.id %>">
+                                <div class=" mb-5 d-flex flex-row">
+                                    <div class="img-post col-4">
+                                        <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/113541benh-vien-bao-son.jpg">
+                                    </div>
+                                    <div class="col-8 d-flex flex-column">
+                                        <h3 class="show-title-post"><%= post.title %></h3>
+                                        <div class="show-content-post" style="color: black">
+                                            <%= striptags(post.contentHTML) %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        <%   })%>
+                    </div>
+
+                    <nav aria-label="navigation" id="paginationForPostClient" data-total="<%= total %>">
+                        <ul class="pagination">
+                            <li class="page-item disabled li-pre-client">
+                                <a class="page-link page-post-pre-client" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Prev</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item ml-3 li-next-client">
+                                <a class="page-link page-post-next-client" href="#" aria-label="Next">
+                                    <span aria-hidden="true">Next &raquo; </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-4 mt-3">
+                    <input type="text" class="form-control" id="searchPostClient" placeholder="Search for a post...">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
