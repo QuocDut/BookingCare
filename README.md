@@ -18,5 +18,4 @@
 6. To run this app, use the command: npm start
 7. Enjoy!
 
-Note: Bài này được remake từ khóa học FullStack SERN của Youtuber HaryDev
-link: https://www.youtube.com/watch?v=H3ItkQfbQj8&list=PLncHg6Kn2JT4Bt3zdTMT2197gPHHbkc_l&index=2
+Note: Bài này được remake từ khóa học FullStack SERN
