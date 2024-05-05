@@ -38,9 +38,12 @@
     />
     <script src="/components/tableOfContent/jquery.tocify.min.js"></script>
 
-    <script type="text/javascript" src="<%" ="process.env.URL_BING_HTTPS" %>
-      async defer>
-    </script>
+    <script
+      type="text/javascript"
+      src="<%= process.env.URL_BING_HTTPS %>"
+      async
+      defer
+    ></script>
   </head>
   <body>
     <%- content %>
